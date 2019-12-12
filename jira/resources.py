@@ -796,12 +796,17 @@ class Role(Resource):
 
         if users is not None and isinstance(users, str):
             users = (users,)
+        else:
+            users = ''
+        
         if groups is not None and isinstance(groups, str):
             groups = (groups,)
+        else:
+            groups = ''
 
-        data = {"user": users}
+        data = {"user": users, "group": groups}
+
         self._session.post(self.self, data=json.dumps(data))
-
 
 class Resolution(Resource):
     """A resolution for an issue."""
